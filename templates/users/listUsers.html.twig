@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+       {% for one in all %} 
+       <tr class="table-active">
+        <td>{{ one.name }}</td>
+        <td>{{ one.LastName }}</td>
+        <td>{{ one.email }}</td>
+        <td>{{ one.password}}</td>
+        <td>{{ one.datecreate|date("m/d/Y") }}</td>
+        <td>{{ one.datelastlogin|date("m/d/Y") }}</td>
+        <td scope="col"><a href=" {{ path('detailsuser',{'id':one.id}) }}" type="button" class="btn btn-info">Info</a></td>
+        </tr>
+      {% endfor %}
+    
+  </tbody>
+</table> 
+{% endblock %}

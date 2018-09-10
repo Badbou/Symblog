@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+        <table class="table table-hover">
+                <thead>
+                        <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Column heading</th>
+                                <th scope="col">Column heading</th>
+                                <th scope="col">Column heading</th>
+                                <th scope="col">Column heading</th>
+                                <th scope="col">Column heading</th>
+                                <th scope="col">Column heading</th>
+                        </tr>
+               
+     
+                        <tr class="table-active">
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.LastName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.password}}</td>
+                                <td>{{ user.datecreate|date("m/d/Y") }}</td>
+                                <td>{{ user.datelastlogin|date("m/d/Y") }}</td>
+                        </tr>
+
+                 </thead>
+               
+        </table>        
+
+
+{% endblock %}
