@@ -3,7 +3,11 @@
 
  {% block body %}
 
-    <h1>ajoutrer</h1>
+    {% if edit %}
+        <h1>Editer un utilisateur </h1>
+    {% else %}
+        <h1>Ajouter un utilisateur </h1>
+    {% endif %}
 
     {{ form_start(form) }}
     {{ form_widget(form) }}

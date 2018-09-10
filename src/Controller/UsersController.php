@@ -120,18 +120,17 @@ class UsersController extends AbstractController
                          
                          ->getForm();
 
-        
-        
-
-
         $formUser->handleRequest($request);
 
         if ($formUser->isSubmitted() && $formUser->isValid()) {
       
-            $user->setdateCreate(new \DateTime());
-            $user->setdateLastLogin(new \DateTime());
+            if($user->getId() == null)
+            {
+                $user->setdateCreate(new \DateTime());
+                $user->setdateLastLogin(new \DateTime());
+            }
             
-            
+           //if($user->getId() !== null && )
             $password =$encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
@@ -144,6 +143,7 @@ class UsersController extends AbstractController
       
         return $this->render('users/adduser.html.twig',[
             'form' => $formUser->createView(),
+            'edit'=> $user->getId()!== null
             
  
         ]);
@@ -159,6 +159,8 @@ class UsersController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute("listusers");  
     }
+
+
 
 
     
