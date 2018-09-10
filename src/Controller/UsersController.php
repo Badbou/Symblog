@@ -19,7 +19,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -99,7 +101,7 @@ class UsersController extends AbstractController
     * @Route("/users/add", name="adduser")
     * @Route("/users/edit/{id}", name="edituser")
     */
-    public function creat(Users $user=null, Request $request, ObjectManager $manager)
+    public function creat(Users $user=null, Request $request, ObjectManager $manager,UserPasswordEncoderInterface $encoder)
     {
 
         if (is_null($user))
@@ -109,11 +111,18 @@ class UsersController extends AbstractController
                          ->add('name',TextType::class)
                          ->add('lastName',TextType::class)
                          ->add('email',EmailType::class)
-                         ->add('password',PasswordTYPE::class)                         
+                         ->add('password',RepeatedType::class, array(
+                            'type' => PasswordType::class,
+                            'first_options'  => array('label' => 'Password'),
+                            'second_options' => array('label' => 'Repeat Password'),))                        
+
                          ->add('enregister', SubmitType::class, array('label' => 'creation'))
+                         
                          ->getForm();
 
-        //dump($user);
+        
+        
+
 
         $formUser->handleRequest($request);
 
@@ -121,6 +130,11 @@ class UsersController extends AbstractController
       
             $user->setdateCreate(new \DateTime());
             $user->setdateLastLogin(new \DateTime());
+            
+            
+            $password =$encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
             //$user = $formUser->getData();  
     
             $manager->persist($user);
@@ -138,12 +152,14 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/users/delete/{id}", name="deleteUser")
+     * @Route("/users/delete/{id}", name="deleteuser")
     */ 
     public function delete(ObjectManager $manager, Users $user) {
         $manager->remove($user);
         $manager->flush();
-        return $this->redirectToRoute("usersList");  
+        return $this->redirectToRoute("listusers");  
     }
+
+
     
 }

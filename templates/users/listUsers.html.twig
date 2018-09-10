@@ -25,6 +25,7 @@
         <td>{{ one.datecreate|date("m/d/Y") }}</td>
         <td>{{ one.datelastlogin|date("m/d/Y") }}</td>
         <td scope="col"><a href=" {{ path('detailsuser',{'id':one.id}) }}" type="button" class="btn btn-info">Info</a></td>
+        <td scope="col"><a href=" {{ path('deleteuser',{'id':one.id}) }}" type="button" class="btn btn-info">supp</a></td>
         </tr>
       {% endfor %}
     

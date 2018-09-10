@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class Users
+
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -132,4 +134,29 @@ class Users
 
         return $this;
     }
+
+    public function getRoles()
+    {
+     
+    }
+
+
+
+    public function getSalt()
+    {
+     
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials() 
+    {
+        
+    }
+
+
+    
 }
