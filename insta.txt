@@ -230,7 +230,8 @@ Je fais une migratrion
 
 
  Next: When you're ready, create a migration with make:migration
-PS C:\wamp64\www\SymBlog> php bin/console make:migrationPS C:\wamp64\www\SymBlog>
+PS C:\wamp64\www\SymBlog> php bin/console make:migration
+PS C:\wamp64\www\SymBlog>
   Success!
 
 

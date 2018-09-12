@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <h1>{{article.title}}</h1>
+        <img src={{article.image}}>
+        <div class="jumbotron">{{article.content}}</div>
+
+
+        <h2>Les commentaires</h2>
+        {% for comment in article.commentaires %}
+                {{ comment.Contents }}
+        {% endfor %}
+
+        <h2>ajouter un commentaire </h2>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    
+    
+
+{% endblock %}

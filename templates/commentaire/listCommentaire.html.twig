@@ -1,0 +1,25 @@
+ {% extends 'base.html.twig' %}
+
+
+ {% block body %}
+    <h1>Liste des commentaires</h1>
+
+    {% for one in all %}
+
+    <div class="jumbotron">  
+        <p >Le commentaire est de {{one.author.name}}</p>
+        <p class="lead" >{{one.contents}}</p>
+        <hr class="my-4">        
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ path('deletecommentaire',{'id':one.id}) }}" role="button">Supprimer le commentaire</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('editcommentaire',{'id':one.id}) }}" role="button">Editer le commentaire</a>
+        </p>
+        
+    </div>
+
+    {% endfor %}
+
+  
+
+
+ {% endblock %}

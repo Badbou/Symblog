@@ -1,0 +1,24 @@
+ {% extends 'base.html.twig' %}
+
+
+ {% block body %}
+    <h1>List  categories </h1>
+    <a href="{{ path('creacategorie') }}" type="button" class="btn btn-info">Ajouter une categorie </a> 
+    {% for one in all %}
+
+        <div class="jumbotron">  
+            <p >la categorie est: {{one.name}}</p>
+            <hr class="my-4">        
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('deletecategorie',{'id':one.id}) }}" role="button">Supprimer la categorie</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('editcategorie',{'id':one.id}) }}" role="button">Editer le categorie</a>
+            </p>
+            
+        </div>
+
+    {% endfor %}
+
+
+
+
+ {% endblock body %}
